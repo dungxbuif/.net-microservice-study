@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+    platform-service:
+      image: dungxbuif/platform-service
+      container_name: platform-service
+      build: .
+      ports:
+          - "8888:80"

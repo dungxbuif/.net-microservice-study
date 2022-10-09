@@ -10,4 +10,5 @@
 
 Chạy ứng dụng:
 `dotnet build`
+run dev: `dotnet watch run`
 `dotnet run`
