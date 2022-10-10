@@ -1,17 +1,15 @@
-using PlatformService.Data;
+using CommandsService.Data;
 using Microsoft.EntityFrameworkCore;
-using PlatformService.SyncDataServices.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("InMem"));
-builder.Services.AddScoped<IPlatformRepo, PlatformRepo>();
-builder.Services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
+builder.Services.AddScoped<ICommandRepo, CommandRepo>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -27,5 +25,4 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 app.MapGet("/", () => "Hello Wolrd!!!");
-PrepDb.PrepPopulation(app);
 app.Run();

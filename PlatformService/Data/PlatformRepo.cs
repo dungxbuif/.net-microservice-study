@@ -19,6 +19,14 @@ namespace PlatformService.Data
          SaveChanges();
       }
 
+      public void DeletePlatformById(int id)
+      {
+         var platform = _context.Platforms.FirstOrDefault(p => p.Id == id);
+         if (platform == null) return;
+         _context.Platforms.Remove(platform);
+         SaveChanges();
+      }
+
       public IEnumerable<Platform> GetAllPlatforms()
       {
          return _context.Platforms.ToList();
